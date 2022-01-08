@@ -1,8 +1,8 @@
 # Import dependecies
 from flask import Flask, render_template, redirect, jsonify
 import pymongo
-import json
-from bson import ObjectId
+# import json
+# from bson import ObjectId
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -16,11 +16,11 @@ db = client.cell_towers
 collection = db.towers_data
 
 # Create a function to encode the ObjectID
-class JSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, ObjectId):
-            return str(o)
-        return json.JSONEncoder.default(self, o)
+# class JSONEncoder(json.JSONEncoder):
+#     def default(self, o):
+#         if isinstance(o, ObjectId):
+#             return str(o)
+#         return json.JSONEncoder.default(self, o)
 
 
 
@@ -36,15 +36,26 @@ def home():
 
 
 # Route that will trigger the scrape function
-@app.route("/data")
+@app.route("/data/")
 def data():
    
     # write a statement that finds all the items in the db and sets it to a variable
     results = list(collection.find().limit(100))
-    print(results)
+
     # return a sample of the data
-    return (jsonify(JSONEncoder().encode(results)))
+    # return (jsonify(JSONEncoder().encode(results)))
+    print(results)
+    return (str(results))
+
+# Route that will trigger the scrape function
+@app.route("/visualization/")
+def viz():
    
+    # write a statement that finds all the items in the db and sets it to a variable
+    results = list(collection.find({},{"_id":0}).limit(100))
+
+    # return a sample of the data
+    return render_template("index.html",html_results=results)
 
 if __name__ == "__main__":
     app.run(debug=True)
