@@ -11,10 +11,16 @@
 </head>
 
 <body>
- 
+  <div id="map"></div>
   <div class="container text-center">
-    <h1 class="p-3 mb-2 bg-secondary text-white">Data</h1>
+    <h1 class="p-3 mb-2 bg-secondary text-white">Map Visualization</h1>
   </div>
+
+  <script>
+    let html_results = JSON.parse("{{html_results | tojson | safe}}")
+  </script>
+  <script src="{{url_for('static', filename='js/logic.js')}}"></script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
