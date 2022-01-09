@@ -1,4 +1,3 @@
-
 // Create layers for the base map
 let street= L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -23,7 +22,7 @@ let overlayMaps={
 
 // Creating our initial map object:
 // We set the longitude, latitude, and starting zoom level.
-var myMap = L.map("map", {
+let myMap = L.map("map", {
   center: [37.09, -95.71],
   zoom: 5,
   layers: [street,towers]
@@ -40,7 +39,7 @@ L.control.layers(baseMaps, overlayMaps, {
 
 // Creating a new marker:
 // We pass in some initial options, and then add the marker to the map by using the addTo() method
-for (var i = 0; i < html_results.length; i++) {
+for (let i = 0; i < html_results.length; i++) {
   console.log(i.lat)
   L.marker([i.lat,i.lon])
     .bindPopup(`<h1>${i.cell}</h3>`)
