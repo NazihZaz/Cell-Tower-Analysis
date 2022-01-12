@@ -1,4 +1,13 @@
 let radio = ['CDMA', 'GSM', 'LTE', 'UMTS']
+let cdma=[]
+let gsm=[]
+let lte=[]
+let umts=[]
+
+let countCDMA=0
+let countGSM=0
+let countLTE=0
+let countUMTS=0
 
 // Loop through the array of books
 for (let i = 0; i < html_results.length; i++) {
@@ -7,16 +16,26 @@ for (let i = 0; i < html_results.length; i++) {
     row = html_results[i];
 
     // Compare `rating` value to `rating` provided as argument
-    if (row.radio == radio) {
-
-        // Increment by one
-        count += 1
+    if (row.radio == "CDMA") {
+        countCDMA += 1
+        cdma.push(countCDMA)
     }
-}
+    else if (row.radio == "GSM") {
+        countGSM += 1
+        gsm.push(countGSM)
+    }
+    else if (row.radio == "LTE") {
+        countLTE += 1
+        lte.push(countLTE)
+    }
+    else {
+        countUMTS += 1
+        umts.push(countUMTS)
+    }
 
 let trace1 = {
     x: radio,
-    y: [1,2,3,4],
+    y: [cdma.length,gsm.length,lte.length,umts.length],
     type: "bar"
 }
 
@@ -27,4 +46,4 @@ let layout = {
     title: "test"
 };
 
-Plotly.newPlot("plot", data, layout);
+Plotly.newPlot("plot", data, layout);}
