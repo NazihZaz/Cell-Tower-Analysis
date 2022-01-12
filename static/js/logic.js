@@ -1,47 +1,57 @@
-// Create layers for the base map
-let street= L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-})
-
-let topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-})
-
-// Create a basemap object
-let baseMaps={
-"Street Map": street,
-"Topographic Map": top
-};
-
-// Create an overlaymaps object
-let towers=[]
-
-let overlayMaps={
-"Towers": towers
-};
-
 // Creating our initial map object:
 // We set the longitude, latitude, and starting zoom level.
 let myMap = L.map("map", {
-  center: [37.09, -95.71],
-  zoom: 5,
-  layers: [street,towers]
+center: [37.09, -95.71],
+zoom: 5 
 });
 
-// Add layers to our map
-L.control.layers(baseMaps, overlayMaps, {
-  collapsed: false,
-  options: {
-    position: 'topright'
-}
-}).addTo(myMap)
-
+// Add a tile layer (the background map image) to our map
+// Use the addTo method to add objects to our map
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(myMap);
 
 // Creating a new marker:
 // We pass in some initial options, and then add the marker to the map by using the addTo() method
+// Create a new marker cluster group.
+
+let markers = L.markerClusterGroup();
+
+// Loop through the data.
 for (let i = 0; i < html_results.length; i++) {
-  console.log(i.lat)
-  L.marker([i.lat,i.lon])
-    .bindPopup(`<h1>${i.cell}</h3>`)
-    .addTo(myMap);
+
+  let color = "";
+  if (html_results[i].radio == "CDMA") {
+    color = "yellow";
+  }
+  else if (html_results[i].radio == "GSM") {
+    color = "blue";
+  }
+  else if (html_results[i].radio == "LTE") {
+    color = "red";
+  }
+  else {
+    color = "green";
+  }
+
+  // Add a new marker to the cluster group, and bind a popup.
+  markers.addLayer(L.circle([html_results[i].lat,html_results[i].lon],{
+    color:color,
+    fillColor:color,
+    fillOpacity:0.5,
+    radius: html_results[i].range/10
+  })
+    .bindPopup(`<p><b>Mobile Country Code:</b> ${html_results[i].mcc}<br>
+    <b>Network:</b> ${html_results[i].net}<br>
+    <b>Cell Tower ID:</b> ${html_results[i].cell}<br>
+    <b>Radio Type:</b> ${html_results[i].radio}<hr>
+    <b>Latitude:</b> ${html_results[i].lat}<br>
+    <b>Longitude:</b> ${html_results[i].lon}<br>
+    <b>Range:</b> ${html_results[i].range}<hr>
+    <b>Created:</b> ${html_results[i].created}<br>
+    <b>Updated:</b> ${html_results[i].updated}</p>`));
 }
+
+// Add our marker cluster layer to the map.
+myMap.addLayer(markers);
+
