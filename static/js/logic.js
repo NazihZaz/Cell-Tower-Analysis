@@ -3,7 +3,7 @@
 let myMap = L.map("map", {
 center: [37.09, -95.71],
 zoom: 5,
-width:1200 
+width:1200
 });
 
 // Add a tile layer (the background map image) to our map
@@ -12,10 +12,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
 
-// Creating a new marker:
-// We pass in some initial options, and then add the marker to the map by using the addTo() method
-// Create a new marker cluster group.
-
+// Converting the unix timestamp dates
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
   var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -28,8 +25,6 @@ function timeConverter(UNIX_timestamp){
   var time = month + ' ' + date + ', ' + year;
   return time;
 }
-
-
 
 // Loop through the data.
 for (let i = 0; i < html_results.length; i++) {
@@ -48,7 +43,7 @@ for (let i = 0; i < html_results.length; i++) {
     color = "green";
   }
 
-  // Add a new marker to the cluster group, and bind a popup.
+  // Add new markers to the cluster group, and bind a popup.
   L.circle([html_results[i].lat, html_results[i].lon],{
     color:color,
     fillColor:color,

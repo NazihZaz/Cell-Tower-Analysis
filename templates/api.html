@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Team Can You Hear Us!</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome on Team Can You Hear Us Webpage</h1><hr>
+        <h2><u>Purpose:</u></h2>
+        <p>This page is the fruit of the modest work of Corey Chickowski, Prajesh Patel and Nazih Bouanani, three students of the Georgia Tech Data Science and Analytics Bootcamp.<br>
+         The purpose of this project is to showcase their analytical and data visualization skills in a <b>local development setting</b>.
+         
+        <h2><u>Overview:</u></h2> 
+        <p>Analysis on cell towers around the United States by gathering data from <a href="https://opencellid.org/" target="_blank">OpenCellid API</a> to help users visualize cell tower by radio type (CDMA, GSM, LTE and UMTS).</p>
+
+        <h2><u>Steps:</u></h2> 
+        <p>1. Getting Data from <a href="https://opencellid.org/" target="_blank">OpenCellid API</a><br>
+        2. Reviewing the data and loading to a MongoDB database using Python and Jupyter Notebook.<br>
+        3. Create a flask app containing three routes:<br></p>
+            <ul>
+            a) Home Page (Current Page).<br>
+            b) Data Sample: To take a look a sample of the data used.<br>
+            c) Visualizations: To be redirected to the visualizations created using Leaflet.js and Chart.js libraries.<br>
+            </ul>
+    </header>
+
+    <div class="container">
+        <div id="plot"></div>
+    </div>
+
+    <div>
+        <hr><h2><u>Take a look at a Sample of the Data</u></h2>
+        <!-- <button target="_blank" onclick="window.location='http://127.0.0.1:5000/data/';" >Data Sample</button> -->
+        <form action="http://127.0.0.1:5000/data/" method="get" target="_blank">
+            <button type="submit">Data Sample</button>
+        </form>
+    </div>
+
+    <div>
+        <h2><u>Go to Visualizations</u></h2>
+        <form action="http://127.0.0.1:5000/visualizations/" method="get" target="_blank">
+            <button type="submit">Visualizations</button>
+        </form>
+    </div>
+
+    <div class="License">
+        <br><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+            <img src="ccbysa_4.0_80x15.png"alt="Creative Commons License" style="border-width:0" >
+        </a>
+        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:cc="https://creativecommons.org/ns#" href="https://opencellid.org" target="_blank" property="cc:attributionName" rel="cc:attributionURL">OpenCelliD Project</a></span>
+        <a xmlns:cc="https://creativecommons.org/ns#" href="https://opencellid.org" property="cc:attributionName" rel="cc:attributionURL">
+        </a>
+        is licensed under a 
+        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+            Creative Commons Attribution-ShareAlike 4.0 International License
+        </a>           
+    </div>
+</body>
+
+</html>
