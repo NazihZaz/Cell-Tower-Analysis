@@ -31,8 +31,8 @@ def home():
 
     # Return available routes
     return (f"Available Routes:<br/><hr>"
-        f"To take a look at a sample of the data use this route: <b>/data<br/></b></br>"
-        f"To visit our web visualizations use this route: <b>/visualizations</b>"
+        f"To take a look at a sample of the data use this route: <b>/data/<br/></b></br>"
+        f"To visit our web visualizations use this route: <b>/visualizations/</b>"
 )
 # Route that will show the data sample
 @app.route("/data/")
@@ -50,7 +50,7 @@ def data():
 def viz():
    
     # write a statement that finds all the items in the db and sets it to a variable
-    results = list(collection.find({},{"_id":0}).limit(1000))
+    results = list(collection.find({},{"_id":0}).limit(200))
     # return the render_template in index.hml file
     return render_template("index.html",html_results=results)
 
