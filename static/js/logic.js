@@ -2,7 +2,8 @@
 // We set the longitude, latitude, and starting zoom level.
 let myMap = L.map("map", {
 center: [37.09, -95.71],
-zoom: 5 
+zoom: 5,
+width:1200 
 });
 
 // Add a tile layer (the background map image) to our map
@@ -28,7 +29,7 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
-// let markers = L.markerClusterGroup();
+
 
 // Loop through the data.
 for (let i = 0; i < html_results.length; i++) {
@@ -64,5 +65,31 @@ for (let i = 0; i < html_results.length; i++) {
     <b>Updated:</b> ${timeConverter(html_results[i].updated)}</p>`).addTo(myMap);
 }
 
-// Add our marker cluster layer to the map.
-// myMap.addLayer(markers);
+  //Create the legend
+  let legend = L.control({
+    position: "bottomright"
+});
+
+// Add legend details
+legend.onAdd = function () {
+    let div = L.DomUtil.create("div", "legend");
+
+    let radioType = ["CDMA","GSM","LTE","UMTS"];
+    let colors = [
+        "yellow",
+        "blue",
+        "red",
+        "green"
+    ];
+
+    // Looping through
+    for (let i = 0; i < radioType.length; i++) {
+        div.innerHTML +=
+            "<i style= 'background: " + colors[i] + "'></i> " +
+            radioType[i] + "</br>";
+    }
+    return div;
+};
+
+// Add the legend to the map
+legend.addTo(myMap);
