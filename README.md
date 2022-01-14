@@ -22,7 +22,7 @@ a) Home Page (Current Page).
 ![Home Page](Images/\Cell Tower Home Page.png)
 
 b) Data Sample: To take a look a sample of the data used.
-![Data Page]("Images/Cell Tower Data Screenshot.png")
+![Can you hear me](Images/Cell\ Tower\ Data\ Screenshot.png)
 
 c) Visualizations: To be redirected to the visualizations created using [Leaflet.js](static/js/logic.js) and [Chart.js](static/js/plots.js) libraries.
 ![Visualization Page](Images/'Cell Tower Viz Screenshot.png')
