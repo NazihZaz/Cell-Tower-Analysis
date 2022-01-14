@@ -1,5 +1,6 @@
 # Project3_Cell_Towers_Analysis: Team Can You Hear Us!
-![Can you hear me](Images/general-hux-star-wars.gif)
+
+<div style="text-align:center"><img src="Images/general-hux-star-wars.gif" /></div>
 <hr>
 
 ## Purpose:
